@@ -18,7 +18,7 @@ public class StartupRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        tableService.createTableIfNotExists();
+        tableService.createTableIfNotExists("schedule");
         System.out.println("StartupRunner executed.");
     }
 }

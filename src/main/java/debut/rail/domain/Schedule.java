@@ -2,6 +2,7 @@ package debut.rail.domain;
 
 import java.time.LocalTime;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,20 +12,42 @@ import jakarta.persistence.Id;
 public class Schedule {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String chainName, TrainName, trainNumber, fromStation, toStation, day;
-    private LocalTime departureTime, arrivalTime;
+    private Long id; 
+
+    @Column(name = "chain_name")  
+    private String chainName;
+
+    @Column(name = "train_name")
+    private String trainName;
+
+    @Column(name = "train_number")
+    private String trainNumber;
+
+    @Column(name = "from_station")
+    private String fromStation;
+
+    @Column(name = "to_station")
+    private String toStation;
+
+    @Column(name = "day")
+    private String day;
+
+    @Column(name = "departure_time")
+    private LocalTime departureTime;
+
+    @Column(name = "arrival_time")
+    private LocalTime arrivalTime;
     
     @Override
     public String toString() {
-        return chainName + TrainName + trainNumber + fromStation + toStation + day + 
+        return chainName + trainName + trainNumber + fromStation + toStation + day + 
             departureTime.getHour() +":" +departureTime.getMinute() + " "+ arrivalTime.getHour() + ":"+arrivalTime.getMinute();
     }
     
     public Schedule(String chainName, String trainName, String trainNumber, String fromStation, String toStation,
             String day, LocalTime departureTime, LocalTime arrivalTime) {
         this.chainName = chainName;
-        TrainName = trainName;
+        this.trainName = trainName;
         this.trainNumber = trainNumber;
         this.fromStation = fromStation;
         this.toStation = toStation;
@@ -34,11 +57,11 @@ public class Schedule {
     }
 
     public String getTrainName() {
-        return TrainName;
+        return trainName;
     }
 
     public void setTrainName(String trainName) {
-        TrainName = trainName;
+        this.trainName = trainName;
     }
 
     public LocalTime getDepartureTime() {
